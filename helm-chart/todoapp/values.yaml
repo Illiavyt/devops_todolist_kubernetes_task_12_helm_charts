@@ -13,7 +13,6 @@ todoapp:
   rollingUpdate:
     maxSurge: 1
     maxUnavailable: 1
-  todoapp:
   image:
     repository: "myrepo/todoapp"
     version: "latest"
@@ -35,11 +34,6 @@ todoapp:
     requests:
       storage: "1Gi"
   serviceAccountName: secrets-reader
-
-secrets:
-  data:
-    SECRET_KEY: QGUyKHl4KXYmdGdoM19zPTB5amEtaSFkcGVieHN6XmRnNDd4KS1rJmtxXzN6Zio5ZSoK
-    DB_NAME: "app_db"
-    DB_USER: "app_user"
-    DB_PASSWORD: "1234"
-    DB_HOST: "mysql-0.mysql.svc.cluster.local"
+  config:
+    data:
+      PYTHONUNBUFFERED: "1"

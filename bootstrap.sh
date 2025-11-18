@@ -1,10 +1,11 @@
 #!/bin/bash
 
-# Створення Kind кластера (якщо ще немає)
-kind create cluster --name mycluster
+# Створення Kind кластера
+kind create cluster --config cluster.yml
 
-# Зняття taint'ів з нодів (щоб дозволити scheduling)
-kubectl taint nodes --all node-role.kubernetes.io/control-plane-
+# Для тейнту спочатку треба підписати (помітити) ноду лейблом, потім застосувати тейнт
+kubectl label node <node-name> app=mysql
+kubectl taint nodes <node-name> app=mysql:NoSchedule
 
 # Встановлення todoapp з dependency mysql через Helm
 helm dependency update ./helm-charts/todoapp
