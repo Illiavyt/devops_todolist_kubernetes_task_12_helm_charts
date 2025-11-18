@@ -22,4 +22,4 @@ spec:
       name: memory
       target:
         type: Utilization
-        averageUtilization: {{ .Values.todoapp.hpa.averageUtilization }}
+        averageUtilization: {{ .Values.hpa.memory.averageUtilization }}

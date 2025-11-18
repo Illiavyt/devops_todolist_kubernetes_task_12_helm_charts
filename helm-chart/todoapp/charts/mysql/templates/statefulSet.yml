@@ -61,10 +61,12 @@ spec:
           periodSeconds: 2
           timeoutSeconds: 1
       tolerations:
-      - key: {{ .Values.mysql.tolerations.key | quote }}
-        operator: {{ .Values.mysql.tolerations.operator | quote }}
-        value: {{ .Values.mysql.tolerations.value | quote }}
-        effect: {{ .Values.mysql.tolerations.effect | quote }}
+      {{- range .Values.mysql.tolerations }}
+      - key: {{ .key | quote }}
+        operator: {{ .operator | quote }}
+        value: {{ .value | quote }}
+        effect: {{ .effect | quote }}
+      {{- end }}
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
